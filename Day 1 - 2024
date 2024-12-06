@@ -1,0 +1,12 @@
+file = open('input.txt')
+data = file.readlines()
+
+#Gets each number from the left hand side and sorts
+list1 = sorted([int(i.split()[0]) for i in data])
+#Gets each number from the right hand side and sorts
+list2 = sorted([int(i.split()[1]) for i in data])
+
+#Finds their respective absolute differences and sums all differences
+total = sum([abs(item - list2[list1.index(item)]) for item in list1])
+
+print(total)
