@@ -1,0 +1,30 @@
+file = open('input.txt')
+data = file.readlines()
+
+counter = 0
+for row in data:
+    #Conver string to int list 
+    row = [int(x) for x in row.split()]
+    print(row)
+    is_increasing = False
+    is_Safe = True
+    if row[0] < row[1]:
+        is_increasing = True
+    #Check safety requirements per row
+    for i in range(0,len(row)-1):
+        if (row[i+1] - row[i]) > 0  and is_increasing == False:
+            is_Safe = False
+            break
+        elif (row[i+1] - row[i]) < 0  and is_increasing == True:
+            is_Safe = False
+            break
+        elif (row[i+1] - row[i]) == 0:
+            is_Safe = False
+            break
+        if abs((row[i + 1] - row[i])) > 3 or abs((row[i + 1] - row[i])) < 1:
+            is_Safe = False
+            break
+    #Count safe rows
+    if is_Safe:
+        counter += 1
+print(counter)
